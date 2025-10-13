@@ -1,6 +1,6 @@
 from cli.menu import Menu
 from cli.store import create_store
-from cli.manager import add_task, rem_task
+from cli.manager import add_task, rem_task, toggle_task_status
 import os
 
 def main():
@@ -14,6 +14,8 @@ def main():
     
     if(selection == 1):
         add_task()
+    elif(selection == 4 or selection == 5):
+        toggle_task_status()
     elif(selection == 6):
         rem_task()
 

@@ -14,7 +14,7 @@ def add_task() -> None:
         "id": str(uuid4()),
         "title": "",
         "description": "",
-        "status": "pending"
+        "status": False
     }
 
     new_task["title"]= input("Enter task title: ")
@@ -51,3 +51,21 @@ def rem_task() -> None:
     except FileNotFoundError:
         print("Storage file not found")
         
+def toggle_task_status() -> None:
+    
+    task_id = input("Enter id of task to toggle status: ")
+
+    try:
+        with open("storage/store.json", 'r') as jf:
+            task_list: list[Task] = json.load(jf)
+            task_idx = search_task_idx(task_list, task_id)
+            if(task_idx >= 0):
+                task_list[task_idx]["status"] = not task_list[task_idx]["status"]
+            else:
+                print("Task with given ID does not exist!")
+
+        with open("storage/store.json", 'w') as jf:
+            json.dump(task_list, jf, indent=2)
+
+    except FileNotFoundError:
+        print("Storage file not found")
