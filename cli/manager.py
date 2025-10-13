@@ -81,3 +81,15 @@ def view_all_tasks() -> None:
 
     except FileNotFoundError:
         print("Storage file not found")
+
+def view_all_completed() -> None:
+    print("ID\t\tTitle\t\tDescription\t\tStatus")
+    try:
+        with open("storage/store.json", 'r') as jf:
+            task_list: list[Task] = json.load(jf)
+            for task in task_list:
+                if (task["status"]):
+                    print(format_task(task))
+
+    except FileNotFoundError:
+        print("Storage file not found")
