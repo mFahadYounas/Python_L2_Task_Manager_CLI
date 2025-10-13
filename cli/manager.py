@@ -1,4 +1,5 @@
 from models.tasks import Task
+from .utils import format_task
 from uuid import uuid4
 import json
 
@@ -66,6 +67,17 @@ def toggle_task_status() -> None:
 
         with open("storage/store.json", 'w') as jf:
             json.dump(task_list, jf, indent=2)
+
+    except FileNotFoundError:
+        print("Storage file not found")
+
+def view_all_tasks() -> None:
+    print("ID\t\tTitle\t\tDescription\t\tStatus")
+    try:
+        with open("storage/store.json", 'r') as jf:
+            task_list: list[Task] = json.load(jf)
+            for task in task_list:
+                print(format_task(task))
 
     except FileNotFoundError:
         print("Storage file not found")
