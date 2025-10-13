@@ -1,6 +1,9 @@
 from models.tasks import Task
 import json
 
+def search_task_idx(task_id: int) -> int:
+    return task_id - 1
+
 def add_task() -> None:
     new_task: Task = {
         "id": 0,
@@ -23,3 +26,21 @@ def add_task() -> None:
 
     except FileNotFoundError:
         print("Storage file not found")
+
+
+def rem_task() -> None:
+
+    task_id = input("Enter id of task to delete: ")
+    
+    try:
+        with open("storage/store.json", 'r') as jf:
+            task_list: list[Task] = json.load(jf)
+            task_idx = search_task_idx(int(task_id))
+            task_list.pop(task_idx)
+
+        with open("storage/store.json", 'w') as jf:
+            json.dump(task_list, jf)
+
+    except FileNotFoundError:
+        print("Storage file not found")
+        
