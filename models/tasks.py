@@ -3,7 +3,7 @@ from typing import Literal
 
 
 class Task(TypedDict):
-    id: int
+    id: str
     title: str
     description: str
     status: Literal["pending", "complete"]

@@ -18,7 +18,7 @@ class Menu:
         except ValueError:
             return False
 
-        if(menu_input_int < 1 or menu_input_int >= len(self.menu_options)):
+        if(menu_input_int < 1 or menu_input_int > len(self.menu_options)):
             return False
         
         return True
