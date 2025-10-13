@@ -1,10 +1,20 @@
 from cli.menu import Menu
+from cli.store import create_store
+from cli.manager import add_task
+import os
 
 def main():
-    menu = Menu()
+    
+    if(not os.path.exists("storage/store.json")):
+        create_store()
 
+    menu = Menu()
     menu.display_menu()
-    menu.get_menu_input()
+    selection = menu.get_menu_input()
+    
+    if(selection == 1):
+        add_task()
+
 
 if __name__ == "__main__":
     main()
