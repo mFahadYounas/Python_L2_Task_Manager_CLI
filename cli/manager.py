@@ -15,6 +15,7 @@ def add_task() -> None:
     try:
         with open("storage/store.json", 'r') as jf:
             data: list[Task] = json.load(jf)
+            new_task["id"] = len(data) + 1
             data.append(new_task)
         
         with open("storage/store.json", 'w') as jf:
