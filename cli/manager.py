@@ -1,9 +1,11 @@
 from models.tasks import Task
 from .utils import format_task, search_task_idx
 from uuid import uuid4
+from .decorators import log_info
 import json
 
 
+@log_info
 def add_task() -> None:
     new_task: Task = {
         "id": str(uuid4()),
@@ -27,6 +29,7 @@ def add_task() -> None:
         print("Storage file not found")
 
 
+@log_info
 def rem_task() -> None:
     task_id = input("Enter id of task to delete: ")
 
@@ -46,6 +49,7 @@ def rem_task() -> None:
         print("Storage file not found")
 
 
+@log_info
 def toggle_task_status() -> None:
     task_id = input("Enter id of task to toggle status: ")
 
@@ -65,6 +69,7 @@ def toggle_task_status() -> None:
         print("Storage file not found")
 
 
+@log_info
 def view_all_tasks() -> None:
     print("ID\t\tTitle\t\tDescription\t\tStatus")
     try:
@@ -77,6 +82,7 @@ def view_all_tasks() -> None:
         print("Storage file not found")
 
 
+@log_info
 def view_all_completed() -> None:
     print("ID\t\tTitle\t\tDescription\t\tStatus")
     try:

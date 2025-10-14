@@ -1,4 +1,5 @@
 from models.tasks import Task
+import os
 
 
 def format_task(task: Task):
@@ -12,3 +13,15 @@ def search_task_idx(task_list: list[Task], task_id: str) -> int:
             return i
 
     return -1
+
+
+def create_logs_dir():
+    if not os.path.exists("logs/"):
+        directory_name = "logs"
+        try:
+            os.mkdir(directory_name)
+            print(f"Directory '{directory_name}' created successfully.")
+        except PermissionError:
+            print(f"Permission denied: Unable to create '{directory_name}'.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
