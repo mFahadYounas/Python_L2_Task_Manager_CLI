@@ -25,7 +25,7 @@ You need uv as your Python package and project manager
     ```bash
     cd Python_L2_Task_Manager_CLI
     ```
-3.  Use the following command to get all requirements
+3.  Use the following command to prepare your environment for running
     ```bash
     uv sync
     ```
