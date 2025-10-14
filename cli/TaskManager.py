@@ -9,6 +9,19 @@ class TaskManager:
     def __init__(self) -> None:
         self.tasks: list[Task] = []
         self.__load_tasks()
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index == len(self.tasks):
+            self.index = 0
+            raise StopIteration()
+        else:
+            index = self.index
+            self.index += 1
+            return self.tasks[index]
 
     def __load_tasks(self) -> None:
         try:
@@ -62,13 +75,13 @@ class TaskManager:
     @log_info
     def __view_all_tasks(self) -> None:
         print("ID\t\tTitle\t\tDescription\t\tStatus")
-        for task in self.tasks:
+        for task in self:
             print(format_task(task))
 
     @log_info
     def __view_all_completed(self) -> None:
         print("ID\t\tTitle\t\tDescription\t\tStatus")
-        for task in self.tasks:
+        for task in self:
             if task["status"]:
                 print(format_task(task))
 
