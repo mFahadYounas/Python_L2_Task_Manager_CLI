@@ -10,10 +10,8 @@ This section will guide you through setting up your project locally. To get a lo
 
 ### Prerequisites
 
-You need uv as your Python package and project manager
-
-*   `uv`
-    Refer to https://docs.astral.sh/uv/#installation for details on installation
+You need uv as your Python package and project manager.
+Refer to https://docs.astral.sh/uv/#installation for details on installation
 
 ### Installation
 
