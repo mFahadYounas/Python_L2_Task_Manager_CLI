@@ -1,14 +1,17 @@
 from models.tasks import Task
 from .utils import format_task, search_task_idx
-from uuid import uuid4
 from .decorators import log_info
+from .utils import task_id_gen
 import json
+
+
+task_id = task_id_gen()
 
 
 @log_info
 def add_task() -> None:
     new_task: Task = {
-        "id": str(uuid4()),
+        "id": next(task_id),
         "title": "",
         "description": "",
         "status": False,

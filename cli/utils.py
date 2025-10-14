@@ -25,3 +25,30 @@ def create_logs_dir():
             print(f"Permission denied: Unable to create '{directory_name}'.")
         except Exception as e:
             print(f"An error occurred: {e}")
+
+
+def create_memory_store():
+    if not os.path.exists("memory/"):
+        directory_name = "memory"
+        try:
+            os.mkdir(directory_name)
+            print(f"Directory '{directory_name}' created successfully.")
+        except PermissionError:
+            print(f"Permission denied: Unable to create '{directory_name}'.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+def task_id_gen():
+    try:
+        with open("memory/mem.txt", "r") as f:
+            n = int(f.read())
+    except FileNotFoundError:
+        create_memory_store()
+        with open("memory/mem.txt", "w") as f:
+            f.write("0")
+        n = 0
+
+    while True:
+        yield str(n)
+        n += 1

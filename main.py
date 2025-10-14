@@ -1,6 +1,6 @@
 from cli.menu import Menu
 from cli.store import create_store
-from cli.manager import actions
+from cli.manager import actions, task_id
 import time
 import os
 import sys
@@ -23,6 +23,12 @@ def main():
             time.sleep(0.1)
 
     except KeyboardInterrupt:
+        try:
+            with open("memory/mem.txt", "w") as f:
+                f.write(next(task_id))
+        except FileNotFoundError:
+            print("\nMemory directory or mem.txt not found!")
+
         print("\nReceived Ctrl+C — shutting down gracefully")
         sys.exit(0)
 
