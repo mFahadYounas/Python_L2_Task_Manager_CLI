@@ -19,6 +19,7 @@ Refer to https://docs.astral.sh/uv/#installation for details on installation
     ```bash
     git clone git@github.com:mFahadYounas/Python_L2_Task_Manager_CLI.git
     ```
+    If you already have a version of the repo, make sure to get the latest version but pulling from the above repo
 2.  Navigate into the project directory
     ```bash
     cd Python_L2_Task_Manager_CLI
