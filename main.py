@@ -1,27 +1,31 @@
 from cli.menu import Menu
 from cli.store import create_store
-from cli.manager import add_task, rem_task, toggle_task_status, view_all_tasks, view_all_completed
+from cli.manager import actions
+import time
 import os
+import sys
 
 def main():
     
-    if(not os.path.exists("storage/store.json")):
-        create_store()
+    try:
+        
+        print("Running — press Ctrl+C to exit")
+        while(True):
+            if(not os.path.exists("storage/store.json")):
+                create_store()
 
-    menu = Menu()
-    menu.display_menu()
-    selection = menu.get_menu_input()
-    
-    if(selection == 1):
-        add_task()
-    elif(selection == 2):
-        view_all_tasks()
-    elif(selection == 3):
-        view_all_completed()
-    elif(selection == 4 or selection == 5):
-        toggle_task_status()
-    elif(selection == 6):
-        rem_task()
+            menu = Menu()
+            menu.display_menu()
+            selection = menu.get_menu_input()
+
+            action = actions[selection]
+            action()
+
+            time.sleep(0.1)
+
+    except KeyboardInterrupt:
+        print("\nReceived Ctrl+C — shutting down gracefully")
+        sys.exit(0)
 
 
 if __name__ == "__main__":

@@ -1,14 +1,8 @@
 from models.tasks import Task
-from .utils import format_task
+from .utils import format_task, search_task_idx
 from uuid import uuid4
 import json
 
-def search_task_idx(task_list:list[Task], task_id: str) -> int:
-    for i in range(len(task_list)):
-        if(task_list[i]["id"] == task_id):
-            return i
-    
-    return -1
 
 def add_task() -> None:
     new_task: Task = {
@@ -93,3 +87,13 @@ def view_all_completed() -> None:
 
     except FileNotFoundError:
         print("Storage file not found")
+        
+
+actions = {
+    1: add_task,
+    2: view_all_tasks,
+    3: view_all_completed,
+    4: toggle_task_status,
+    5: toggle_task_status,
+    6: rem_task
+}
