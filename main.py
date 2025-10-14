@@ -5,13 +5,12 @@ import time
 import os
 import sys
 
+
 def main():
-    
     try:
-        
         print("Running — press Ctrl+C to exit")
-        while(True):
-            if(not os.path.exists("storage/store.json")):
+        while True:
+            if not os.path.exists("storage/store.json"):
                 create_store()
 
             menu = Menu()
