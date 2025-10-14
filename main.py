@@ -1,6 +1,6 @@
 from cli.menu import Menu
 from cli.store import create_store
-from cli.manager import actions, task_id
+from cli.TaskManager import TaskManager
 import time
 import os
 import sys
@@ -17,18 +17,12 @@ def main():
             menu.display_menu()
             selection = menu.get_menu_input()
 
-            action = actions[selection]
-            action()
+            tm = TaskManager()
+            tm.call_action(selection)
 
             time.sleep(0.1)
 
     except KeyboardInterrupt:
-        try:
-            with open("memory/mem.txt", "w") as f:
-                f.write(next(task_id))
-        except FileNotFoundError:
-            print("\nMemory directory or mem.txt not found!")
-
         print("\nReceived Ctrl+C — shutting down gracefully")
         sys.exit(0)
 
