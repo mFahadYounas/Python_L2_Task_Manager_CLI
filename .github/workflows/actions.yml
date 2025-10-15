@@ -22,16 +22,12 @@ jobs:
       - name: Create uv virtual environment and sync dependencies
         run: |
           uv sync
-          source .venv/bin/activate
-          uv tool install mypy ruff
 
       - name: Run Ruff (formatting and linting)
         run: |
-          source .venv/bin/activate
-          uv run ruff check .
-          uv run ruff format --check .
+          ruff check .
+          ruff format --check .
 
       - name: Run MyPy (type checking)
         run: |
-          source .venv/bin/activate
-          uv run mypy .
+          mypy .
